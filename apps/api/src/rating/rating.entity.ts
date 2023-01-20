@@ -7,7 +7,6 @@ import {
   Column,
   ManyToOne,
   ManyToMany,
-  JoinTable,
   JoinColumn,
 } from "typeorm";
 import { Reaction } from "./rating.dto";
@@ -23,7 +22,6 @@ export class Rating extends BaseEntity {
   @ManyToOne(() => User, (user) => user.ratings)
   user: User;
 
-  @ManyToMany(() => JsonPackageEntity, (jsonPackage) => jsonPackage.users)
-  @JoinColumn()
+  @ManyToOne(() => JsonPackageEntity, (jsonPackage) => jsonPackage.users)
   jsonPackage: JsonPackageEntity;
 }

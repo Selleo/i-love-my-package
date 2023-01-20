@@ -36,5 +36,5 @@ export class JsonPackageEntity extends BaseEntity {
   users: User[];
 
   @OneToMany(() => Rating, (rating) => rating.jsonPackage)
-  rating: Rating[];
+  ratings: Rating[];
 }

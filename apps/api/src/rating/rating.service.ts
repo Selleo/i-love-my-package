@@ -7,10 +7,19 @@ import { Rating } from "./rating.entity";
 
 @Injectable()
 export class RatingService {
-  getByPackageId(packageId: number): Promise<Rating | null> {
-    return Rating.findOneBy({
-      jsonPackage: {
-        id: packageId,
+  getByPackageId(
+    jsonPackage: JsonPackageEntity,
+    user: User
+  ): Promise<Rating | null> {
+    return Rating.findOne({
+      where: {
+        jsonPackage: {
+          id: jsonPackage.id,
+        },
+      },
+      relations: {
+        user: true,
+        jsonPackage: true,
       },
     });
   }
@@ -24,7 +33,8 @@ export class RatingService {
       where: { id: packageId },
     });
 
-    const existingRating = await this.getByPackageId(packageId);
+    const existingRating = await this.getByPackageId(jsonPackage, currentUser);
+
     if (!existingRating) {
       const newRating = Rating.create({
         ...currentUser,
