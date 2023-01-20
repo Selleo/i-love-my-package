@@ -10,7 +10,8 @@
     },
     "api#build": {
       "dependsOn": [
-        "^build"
+        "^build",
+        "$NODE_ENV"
       ]
     },
     "web#build": {

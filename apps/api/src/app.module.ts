@@ -5,15 +5,17 @@ import { APP_GUARD, APP_PIPE } from "@nestjs/core";
 import { PackageController } from "./package/package.controller";
 import { UserModule } from "./user/user.module";
 import { PackageModule } from "./package/package.module";
+import { RatingModule } from "./rating/rating.module";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [`.env.${process.env.NODE_ENV ?? "production"}`, ".env"],
+      envFilePath: [".env"],
     }),
     DatabaseModule,
     UserModule,
     PackageModule,
+    RatingModule,
   ],
   providers: [
     {

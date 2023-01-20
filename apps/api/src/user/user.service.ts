@@ -25,7 +25,7 @@ export class UserService {
     });
   }
 
-  getById(userId: string) {
+  getById(userId: number) {
     return User.findOne({
       where: {
         id: userId,

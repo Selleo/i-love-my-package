@@ -1,9 +1,13 @@
+import { Rating } from "@app/rating/rating.entity";
 import { User } from "@app/user/user.entity";
 import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
+  JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 
@@ -22,5 +26,9 @@ export class JsonPackageEntity extends BaseEntity {
     cascade: true,
     onDelete: "CASCADE",
   })
+  @JoinTable()
   users: User[];
+
+  @OneToMany(() => Rating, (rating) => rating.jsonPackage)
+  rating: Rating[];
 }

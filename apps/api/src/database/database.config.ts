@@ -26,5 +26,6 @@ export const makeConnectionConfig = (
     entities: [path.join(__dirname, "..", "**", "*.entity.{ts,js}")],
     migrations: [path.join(__dirname, "migrations/*.{j,t}s")],
     namingStrategy: new SnakeNamingStrategy(),
+    synchronize: true,
   };
 };
