@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Tag from "../../components/Tag";
 import UsersList from "./UsersList/UsersList";
+import Button from "../../components/Button";
 
 function Details() {
   const { id } = useParams();
@@ -47,9 +48,14 @@ function Details() {
         className="details__link"
         onClick={scrollToUsersSection}
       >{`(${MOCK_DATA.usedBy.length} people used)`}</button>
+      <Button />
       <UsersList variant="like" list={likeList} />
       <UsersList variant="warning" list={warningList} />
       <UsersList variant="warning" list={dangerList} />
+      <div className="package-card__cards-wrapper">
+        <p className="package-card__paragraph -light-gray">Received Cards:</p>
+        <Tag count={1} variant="danger" /> <Tag count={3} variant="warning" />
+      </div>
     </div>
   );
 }
