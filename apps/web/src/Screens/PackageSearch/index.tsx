@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react'
 import { ReactComponent as IconSearch } from '../../assets/images/IconSearch.svg'
+import PackageCard from '../../components/PackageCard'
 
 function PackageSearch() {
   const [searchValue, setSearchValue] = useState<string>()
@@ -19,6 +20,10 @@ function PackageSearch() {
         />
         <IconSearch />
       </div>
+      <ul className="package-search__list">
+        <PackageCard />
+        <PackageCard />
+      </ul>
     </div>
   )
 }
