@@ -36,7 +36,7 @@ export const packageReducer = createApi({
     getPackages: builder.mutation<MyPackage, string>({
       query: (name) => ({
         url: 'package',
-        method: 'POTS',
+        method: 'POST',
         body: {
           search: name,
         },

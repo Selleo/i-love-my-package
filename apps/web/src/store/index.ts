@@ -5,4 +5,7 @@ export const store = configureStore({
   reducer: {
     [packageReducer.reducerPath]: packageReducer.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(packageReducer.middleware),
+  devTools: process.env.NODE_ENV !== 'production',
 })

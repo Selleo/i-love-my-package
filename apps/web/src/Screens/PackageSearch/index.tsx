@@ -5,6 +5,7 @@ import { useGetPackagesMutation } from '../../store/packageReducer'
 
 function PackageSearch() {
   const [searchValue, setSearchValue] = useState<string>('')
+  const [packages, setPackages] = useState<any>([])
 
   const [getPackages] = useGetPackagesMutation()
 
@@ -15,6 +16,8 @@ function PackageSearch() {
   useEffect(() => {
     if (searchValue !== '') {
       getPackages(searchValue)
+        .unwrap()
+        .then((res) => console.log('res', setPackages(res)))
     }
   }, [searchValue])
 
@@ -30,8 +33,9 @@ function PackageSearch() {
         <IconSearch />
       </div>
       <ul className="package-search__list">
-        <PackageCard />
-        <PackageCard />
+        {packages?.map((element: any) => (
+          <PackageCard packageElement={element} />
+        ))}
       </ul>
     </div>
   )
