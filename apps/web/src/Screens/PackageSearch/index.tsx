@@ -1,13 +1,22 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { ReactComponent as IconSearch } from '../../assets/images/IconSearch.svg'
 import PackageCard from '../../components/PackageCard'
+import { useGetPackagesMutation } from '../../store/packageReducer'
 
 function PackageSearch() {
-  const [searchValue, setSearchValue] = useState<string>()
+  const [searchValue, setSearchValue] = useState<string>('')
+
+  const [getPackages] = useGetPackagesMutation()
 
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value)
   }
+
+  useEffect(() => {
+    if (searchValue !== '') {
+      getPackages(searchValue)
+    }
+  }, [searchValue])
 
   return (
     <div className="package-search">
