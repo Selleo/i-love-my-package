@@ -1,9 +1,9 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Details from './Screens/Details';
-import Home from './Screens/Home';
-import PackageSearch from './Screens/PackageSearch';
-import Uploaded from './Screens/Uploaded';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Details from "./Screens/Details";
+import Home from "./Screens/Home";
+import PackageSearch from "./Screens/PackageSearch";
+import Uploaded from "./Screens/Uploaded";
 
 function App() {
   return (

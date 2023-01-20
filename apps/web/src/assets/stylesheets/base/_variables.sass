@@ -2,81 +2,83 @@
   @return math.div($size, 16px) * 1rem
 
 //----- fonts sizes and line-heights -----------------------------------------------------------------------------------
-$font-size-xs:                    rem(12px)
-$font-size-sm:                    rem(14px)
-$font-size-base:                  rem(18px)
-$font-size-lg:                    rem(22px)
-$font-size-xl:                    rem(28px)
-$font-size-2xl:                   rem(48px)
-$font-size-3xl:                   rem(72px)
+$font-size-xs: rem(12px)
+$font-size-sm: rem(14px)
+$font-size-base: rem(18px)
+$font-size-lg: rem(22px)
+$font-size-xl: rem(28px)
+$font-size-2xl: rem(48px)
+$font-size-3xl: rem(72px)
 
 //----- spacings (margins/paddings) ------------------------------------------------------------------------------------
-$m-xs:                            rem(8px)
-$m-sm:                            $m-xs * 2
-$m-base:                          $m-xs * 3
-$m-lg:                            $m-base * 2
-$m-xl:                            $m-base * 3
-$m-2xl:                           $m-base * 4
+$m-xs: rem(8px)
+$m-sm: $m-xs * 2
+$m-base: $m-xs * 3
+$m-lg: $m-base * 2
+$m-xl: $m-base * 3
+$m-2xl: $m-base * 4
 
 //----- line heights ---------------------------------------------------------------------------------------------------
-$line-height-sm:                  $m-sm
-$line-height-base:                $m-base
-$line-height-lg:                  $m-lg
+$line-height-sm: $m-sm
+$line-height-base: $m-base
+$line-height-lg: $m-lg
 
 //----- border radiuses ------------------------------------------------------------------------------------------------
-$border-radius-base:              $m-base
-$border-radius-sm:                $m-xs
-$border-radius-lg:                $m-lg
+$border-radius-base: $m-base
+$border-radius-sm: $m-xs
+$border-radius-lg: $m-lg
 
 //----- breakpoints ----------------------------------------------------------------------------------------------------
-$grid-breakpoints:                (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, 2xl: 1600px)
+$grid-breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, 2xl: 1600px)
 
-$grid-columns:                    12
-$grid-gutter-width:               $m-base
+$grid-columns: 12
+$grid-gutter-width: $m-base
 
-$container:                       map-get($grid-breakpoints, xl)
+$container: map-get($grid-breakpoints, xl)
 
 //----- colors ---------------------------------------------------------------------------------------------------------
-$color-primary-400:               #05d5ff
-$color-primary-500:               #00add0
-$color-primary-600:               #00849e
-$color-secondary-400:             #ff8f5c
-$color-secondary-500:             #ff6d2a
-$color-secondary-600:             #f54e00
+$color-primary-400: #05d5ff
+$color-primary-500: #00add0
+$color-primary-600: #00849e
+$color-secondary-400: #ff8f5c
+$color-secondary-500: #ff6d2a
+$color-secondary-600: #f54e00
 
-$color-success:                   #48bd66
-$color-warning:                   #ffd200
-$color-danger:                    #e62a2a
-$color-info:                      #5bc0de
+$color-success: #48bd66
+$color-warning: #E2B618
 
-$color-white:                     #ffffff
-$color-neutral-300:               hsl(36, 5%, 85%)
-$color-neutral-400:               hsl(36, 5%, 75%)
-$color-neutral-500:               hsl(36, 5%, 62%)
-$color-neutral-600:               hsl(36, 5%, 38%)
-$color-neutral-700:               hsl(36, 5%, 28%)
-$color-black:                     #04080c
+$color-danger: #E81B2F
+
+$color-info: #5bc0de
+
+$color-white: #ffffff
+$color-neutral-300: hsl(36, 5%, 85%)
+$color-neutral-400: hsl(36, 5%, 75%)
+$color-neutral-500: hsl(36, 5%, 62%)
+$color-neutral-600: hsl(36, 5%, 38%)
+$color-neutral-700: hsl(36, 5%, 28%)
+$color-black: #04080c
 
 //----- fonts ----------------------------------------------------------------------------------------------------------
-$font-face-header:                'Rubik'
-$font-face-body:                  'Nunito Sans'
-$font-family-header:              $font-face-header, sans-serif
-$font-family-body:                $font-face-body, serif
+$font-face-header: 'Rubik'
+$font-face-body: 'Nunito Sans'
+$font-family-header: $font-face-header, sans-serif
+$font-family-body: $font-face-body, serif
 
-$font-weight-light:               300
-$font-weight-regular:             400
-$font-weight-bold:                700
+$font-weight-light: 300
+$font-weight-regular: 400
+$font-weight-bold: 700
 
-$icon-size:                       $m-base
+$icon-size: $m-base
 
 //----- transitions ----------------------------------------------------------------------------------------------------
-$transition-duration:             .3s
-$transition-function:              ease-in-out
+$transition-duration: .3s
+$transition-function: ease-in-out
 
 //----- z-indexes ------------------------------------------------------------------------------------------------------
-$z-negative:                      -1
-$z-lower:                         30
-$z-low:                           40
-$z-base:                          50
-$z-high:                          60
-$z-higher:                        70
+$z-negative: -1
+$z-lower: 30
+$z-low: 40
+$z-base: 50
+$z-high: 60
+$z-higher: 70
