@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { ReactComponent as LikeIcon } from "../../assets/images/heart-filled.svg";
+import { ReactComponent as LikeIcon } from "../../assets/images/heart.svg";
 
 type Props = {
   label: string;
