@@ -8,10 +8,10 @@ type TProps = {
 const Layout = ({ children }: TProps) => {
   return (
     <div className="layout-background">
-      <div>
+      <div className="logo">
         <Logo />
       </div>
-      {children}
+      <main>{children}</main>
     </div>
   );
 };

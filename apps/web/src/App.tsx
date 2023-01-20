@@ -9,14 +9,14 @@ import '../src/assets/stylesheets/application.sass';
 
 function App() {
   return (
-    <Routes>
-      <Layout>
+    <Layout>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="details/:id" element={<Details />} />
         <Route path="uploaded" element={<Uploaded />} />
         <Route path="search" element={<PackageSearch />} />
-      </Layout>
-    </Routes>
+      </Routes>
+    </Layout>
   );
 }
 
