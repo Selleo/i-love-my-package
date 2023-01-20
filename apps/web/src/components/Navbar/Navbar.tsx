@@ -28,7 +28,7 @@ const Navbar = () => {
       <div>
         <div className="navbar__input-wrapper">
           <input
-            className="navbar__input"
+            className="navbar__input input -search"
             placeholder="Search package"
             value={searchValue}
             onChange={handleChangeInput}

@@ -13,7 +13,7 @@ function PackageSearch() {
     <div className="package-search">
       <div className="package-search__input-wrapper">
         <input
-          className="package-search__input"
+          className="package-search__input input -search"
           placeholder="Search package"
           value={searchValue}
           onChange={handleChangeInput}
