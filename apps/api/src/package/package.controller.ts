@@ -5,6 +5,7 @@ import {
   MyPackage,
   UsedBy,
 } from "@app/package/json-package.type";
+import { ReacrtionType } from "@app/rating/rating.dto";
 import { CurrentUser } from "@app/user/current-user.decorator";
 import { User } from "@app/user/user.entity";
 import { UserGuard } from "@app/user/user.guard";
@@ -14,6 +15,7 @@ import {
   Get,
   Param,
   Post,
+  Query,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -91,14 +93,15 @@ export class PackageController {
   }
 
   @Get()
-  async packages(@Body() body: { search?: string }, @CurrentUser() user: User) {
-    const packagesQuery = await JsonPackageEntity.createQueryBuilder(
-      "pkg"
-    ).innerJoin("pkg.users", "users");
+  async packages(@Query("search") search: string, @CurrentUser() user: User) {
+    const packagesQuery = JsonPackageEntity.createQueryBuilder("pkg").innerJoin(
+      "pkg.users",
+      "users"
+    );
 
-    if (body.search)
+    if (search)
       packagesQuery.where("LOWER(pkg.name) LIKE :search", {
-        search: `%${body.search}%`,
+        search: `%${search}%`,
       });
 
     const packages = await packagesQuery.getMany();
@@ -140,24 +143,28 @@ export class PackageController {
       id: package_.id,
       name: package_.name,
       usedBy,
+      reactions: {
+        [ReacrtionType.redCad]: [
+          {
+            email: "aa",
+            comment: "ad",
+          },
+        ],
+        SUPER_LIKE: [
+          {
+            email: "aa",
+            comment: "ad",
+          },
+        ],
+        YELLOW_CARD: [
+          {
+            email: "aa",
+            comment: "ad",
+          },
+        ],
+      },
     };
 
     return mypkg;
   }
 }
-
-// type MyPackage = {
-//   id: number;
-//   name: string;
-//   usedBy: [
-//     {
-//       user: User;
-//       version: string;
-//     }
-//   ];
-//   reactions: {
-//     likes: [{ user: User; comment: string }];
-//     dislikes: [{ user: User; comment: string }];
-//     warnings: [{ user: User; comment: string }];
-//   };
-// };

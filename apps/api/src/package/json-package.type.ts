@@ -1,3 +1,4 @@
+import { ReacrtionType } from "@app/rating/rating.dto";
 import { User } from "@app/user/user.entity";
 
 export interface JSONPackage {
@@ -15,6 +16,12 @@ export interface MyPackage {
   name: string;
   versions?: Version[];
   usedBy?: UsedBy[];
+  reactions?: {
+    [key in ReacrtionType]: {
+      email: string;
+      comment: string;
+    }[];
+  };
 }
 export interface Version {
   userId: number;
