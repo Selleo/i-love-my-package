@@ -1,19 +1,23 @@
 import { useNavigate } from 'react-router-dom'
 import Tag from '../../components/Tag'
 
-const PackageCard = () => {
+const PackageCard = ({ packageElement }: any) => {
   const navigate = useNavigate()
-
-  const onClickCard = () => navigate('/details/1')
+  console.log('packageElement', packageElement)
+  const onClickCard = () => navigate(`/details/${packageElement.id}`)
 
   return (
     <li className="package-card">
       <div className="package-card__info-wrapper">
         <div className="package-card__name-wrapper">
           <button className="package-card__name" onClick={onClickCard}>
-            name
+            {packageElement.name}
           </button>
-          <button className="package-card__people">(24 people used)</button>
+          <button className="package-card__people">
+            ({packageElement?.usedBy?.length}{' '}
+            {packageElement?.usedBy?.length === 1 || 0 ? 'person' : 'people'}{' '}
+            used)
+          </button>
         </div>
         <div className="package-card__cards-wrapper">
           <p className="package-card__paragraph -light-gray">Received Cards:</p>
