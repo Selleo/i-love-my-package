@@ -79,7 +79,9 @@ function Home() {
           <p className="home__info">import package.json</p>
           <div {...getRootProps({ className: 'dropzone' })}>
             <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
+            <p className="home__drag">
+              Drag 'n' drop some files here, or click to select files
+            </p>
           </div>
           <aside className="thumbsContainer">{thumbs}</aside>
         </section>
