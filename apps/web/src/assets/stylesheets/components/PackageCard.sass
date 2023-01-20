@@ -7,21 +7,32 @@
   border-radius: 24px
   padding: 24px
   display: flex
+  justify-content: space-between
 
   &__info-wrapper
-    flex-grow: 1
+    display: flex
+    flex-direction: column
+    justify-content: space-between
 
   &__likes-wrapper
-    flex-grow: 2
     text-align: right
+
+  &__cards-wrapper
+    display: flex
+    align-items: center
 
   &__paragraph
     color: #FFFFFF
-
-    .-gray
-     color: #95979D
+    margin-bottom: 0
+    padding-right: 27px
 
     .light-gray
       color: #EAEAEB
 
+  &__name
+    color: #FFFFFF
+    margin-bottom: 0
+    padding-right: 8px
 
+  &__people
+    color: #95979D
