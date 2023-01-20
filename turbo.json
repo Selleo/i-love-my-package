@@ -8,6 +8,11 @@
         "dist/**"
       ]
     },
+    "api#build": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
     "web#build": {
       "dependsOn": [
         "^build"
