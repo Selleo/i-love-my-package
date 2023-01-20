@@ -4,7 +4,7 @@ import { ConfigModule } from "@nestjs/config";
 import { APP_GUARD, APP_PIPE } from "@nestjs/core";
 import { PackageController } from "./package/package.controller";
 import { UserModule } from "./user/user.module";
-import { PackageModule } from './package/package.module';
+import { PackageModule } from "./package/package.module";
 
 @Module({
   imports: [

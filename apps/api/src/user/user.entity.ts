@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { JsonPackageEntity } from "@app/package/json-package.entity";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -7,4 +8,7 @@ export class User {
 
   @Column({ nullable: false })
   email: string;
+
+  @ManyToMany(() => JsonPackageEntity, (jsonPackage) => jsonPackage.users)
+  jsonPackages: JsonPackageEntity[];
 }
