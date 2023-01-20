@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ReactComponent as Logo } from '../../assets/images/new.Selleo-logo.svg';
 import { ReactComponent as IconSearch } from '../../assets/images/Icon.svg';
+import { ReactComponent as Love } from '../../assets/images/heart-filled.svg';
 
 const Navbar = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -18,8 +19,11 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div>
+      <div className="navbar__logo">
         <Logo />
+        <div className="navbar__text">
+          i <Love className="navbar__icon" /> my package
+        </div>
       </div>
       <div>
         <div className="navbar__input-wrapper">
