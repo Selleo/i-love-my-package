@@ -10,7 +10,7 @@ import {
 } from "class-validator";
 
 export enum ReacrtionType {
-  redCad = "RED_CARD",
+  redCard = "RED_CARD",
   yellowCard = "YELLOW_CARD",
   superLike = "SUPER_LIKE",
 }

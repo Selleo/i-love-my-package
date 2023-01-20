@@ -9,6 +9,8 @@ export class UserGuard implements CanActivate {
 
     const email = req.headers["authorization"];
 
+    if (!email) return false;
+
     let user = await User.findOneBy({ email });
     if (!user) user = await User.create({ email }).save();
 

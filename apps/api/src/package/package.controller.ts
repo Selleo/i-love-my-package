@@ -56,8 +56,6 @@ export class PackageController {
         relations: { users: true },
       });
 
-      console.log(pkg?.users);
-
       if (!pkg)
         pkg = JsonPackageEntity.create({
           name: dependency.name,
@@ -145,19 +143,19 @@ export class PackageController {
       name: package_.name,
       usedBy,
       reactions: {
-        [ReacrtionType.redCad]: [
+        [ReacrtionType.redCard]: [
           {
             email: "aa",
             comment: "ad",
           },
         ],
-        SUPER_LIKE: [
+        [ReacrtionType.yellowCard]: [
           {
             email: "aa",
             comment: "ad",
           },
         ],
-        YELLOW_CARD: [
+        [ReacrtionType.superLike]: [
           {
             email: "aa",
             comment: "ad",

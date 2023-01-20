@@ -36,7 +36,7 @@ export class RatingService {
     const newRating = Rating.create({
       ...currentUser,
       ...jsonPackage,
-      ...reactions,
+      reactions,
     });
 
     return newRating.save();
