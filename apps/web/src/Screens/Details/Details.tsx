@@ -35,7 +35,7 @@ function Details() {
 
   const scrollToUsersSection = () => {};
 
-  return <UsersList variant="like" list={MOCK_DATA.reactions.like} />;
+  return <UsersList variant="warning" list={MOCK_DATA.reactions.like} />;
 }
 
 export default Details;

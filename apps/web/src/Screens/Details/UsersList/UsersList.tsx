@@ -27,19 +27,17 @@ const UsersList = ({ variant, list }: Props) => {
 
   return (
     <>
-      <div>
-        <h5>{getTitle()}</h5>
-        <h5>{list.length}</h5>
-      </div>
+      <h3 className="list__header">{getTitle()} <span>({list.length})</span></h3>
       {list.map((item, index) => (
-        <div key={index}>
-          <div>
+        <div className="list__item" key={index}>
+          <div className="list__item-header">
             <div className={`list__icon -${variant}`}>
               {variant === "like" ? <LikeIcon /> : <CardIcon />}
             </div>
-            <p>{item.user}</p>
+            {item.user}
           </div>
-          <p>{item.comment}</p>
+          {item.comment && 
+          <div className="list__comment">{item.comment}</div> }
         </div>
       ))}
     </>
