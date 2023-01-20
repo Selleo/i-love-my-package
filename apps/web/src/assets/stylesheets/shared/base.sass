@@ -1,0 +1,75 @@
+*,
+*::before,
+*::after
+  box-sizing: border-box
+
+html:focus-within
+  scroll-behavior: smooth
+
+body
+  color: $color-neutral-600
+  font:
+    family: $font-family-body
+    size: $font-size-base
+  line-height: $line-height-base
+
+b,
+strong
+  font-weight: $font-weight-bold
+
+a,
+button,
+input[type='button'],
+input[type='submit']
+  +focus
+  cursor: pointer
+
+a
+  color: $color-primary-500
+
+  +hover
+    color: $color-primary-400
+
+img,
+picture
+  display: block
+  max-width: 100%
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  font-family: $font-family-header
+  margin:
+    bottom: $m-base
+    top: 0
+
+p
+  margin:
+    bottom: $m-sm
+    top: 0
+
+button
+  appearance: none
+  background-color: transparent
+  border: none
+  outline: none
+  padding: 0
+
+textarea
+  resize: vertical
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce)
+  html:focus-within
+    scroll-behavior: auto
+
+  *,
+  *::before,
+  *::after
+    animation-duration: 0.01ms !important
+    animation-iteration-count: 1 !important
+    transition-duration: 0.01ms !important
+    scroll-behavior: auto !important
