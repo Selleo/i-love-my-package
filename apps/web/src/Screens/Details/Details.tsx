@@ -15,7 +15,7 @@ function Details() {
     reactions: {
       like: [
         { user: "Monika", comment: "some random comment" },
-        { user: "Monika" },
+        { user: "Monika", comment: "some random comment" },
         { user: "Monika", comment: "some random comment" },
       ],
       redFlag: [
@@ -32,10 +32,26 @@ function Details() {
   };
 
   const likeList = MOCK_DATA.reactions?.like || [];
+  const warningList = MOCK_DATA.reactions?.yellowFlag || [];
+  const dangerList = MOCK_DATA.reactions?.redFlag || [];
 
   const scrollToUsersSection = () => {};
 
-  return <UsersList variant="warning" list={MOCK_DATA.reactions.like} />;
+  return (
+    <div>
+      <div className="details__header">
+        <h1 className="details__title">{MOCK_DATA.name}</h1>
+        <Tag count={likeList.length} variant="like" />
+      </div>
+      <button
+        className="details__link"
+        onClick={scrollToUsersSection}
+      >{`(${MOCK_DATA.usedBy.length} people used)`}</button>
+      <UsersList variant="like" list={likeList} />
+      <UsersList variant="warning" list={warningList} />
+      <UsersList variant="warning" list={dangerList} />
+    </div>
+  );
 }
 
 export default Details;
