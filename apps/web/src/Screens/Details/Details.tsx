@@ -15,19 +15,18 @@ function Details() {
     ],
     reactions: {
       like: [
-        { user: "Monika", comment: "some random comment" },
-        { user: "Monika", comment: "some random comment" },
-        { user: "Monika", comment: "some random comment" },
+        { user: "Monika", comment: "Recommend" },
+        { user: "Bob" },
+        { user: "Kasia", comment: "I love this package. It is the best package there is!" },
       ],
       redFlag: [
-        { user: "Monika", comment: "some random comment" },
+        { user: "Mateusz", comment: "I wouldn't use it" },
         { user: "Monika" },
-        { user: "Monika", comment: "some random comment" },
       ],
       yellowFlag: [
-        { user: "Monika", comment: "some random comment" },
-        { user: "Monika", comment: "some random comment" },
-        { user: "Monika", comment: "some random comment" },
+        { user: "Monika", comment: "I had some issues" },
+        { user: "Wojtek", comment: "Be cautious" },
+        { user: "Szymon" },
       ],
     },
   };

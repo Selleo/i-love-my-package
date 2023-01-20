@@ -17,9 +17,9 @@ const UsersList = ({ variant, list }: Props) => {
       case "like":
         return "Super Likes";
       case "warning":
-        return "Name";
+        return "Yellow cards";
       case "danger":
-        return "Name";
+        return "Red cards";
     }
   };
 
