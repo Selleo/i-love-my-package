@@ -33,18 +33,13 @@ export class RatingService {
       where: { id: packageId },
     });
 
-    const existingRating = await this.getByPackageId(jsonPackage, currentUser);
+    const newRating = Rating.create({
+      ...currentUser,
+      ...jsonPackage,
+      ...reactions,
+    });
 
-    if (!existingRating) {
-      const newRating = Rating.create({
-        ...currentUser,
-        ...jsonPackage,
-        ...reactions,
-      });
-      return newRating.save();
-    }
-
-    return this.update(existingRating, reactions);
+    return newRating.save();
   }
 
   update(rating: Rating, reactions: Reaction[]): Promise<Rating> {

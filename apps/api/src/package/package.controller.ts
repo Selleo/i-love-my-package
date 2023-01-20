@@ -15,7 +15,6 @@ import {
   Get,
   Param,
   Post,
-  Query,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -92,16 +91,18 @@ export class PackageController {
     }));
   }
 
-  @Get()
-  async packages(@Query("search") search: string, @CurrentUser() user: User) {
+  @Post()
+  async packages(@Body() body: { search?: string }, @CurrentUser() user: User) {
     const packagesQuery = JsonPackageEntity.createQueryBuilder("pkg").innerJoin(
       "pkg.users",
       "users"
     );
 
-    if (search)
+    if (!body?.search) return [];
+
+    if (body.search)
       packagesQuery.where("LOWER(pkg.name) LIKE :search", {
-        search: `%${search}%`,
+        search: `%${body.search}%`,
       });
 
     const packages = await packagesQuery.getMany();
