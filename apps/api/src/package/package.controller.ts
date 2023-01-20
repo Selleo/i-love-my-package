@@ -1,4 +1,3 @@
-import { JSONPackage } from "@app/package/type";
 import {
   Controller,
   Post,
@@ -12,6 +11,8 @@ export class PackageController {
   @Post("upload")
   @UseInterceptors(FileInterceptor("file"))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
-    const packageJSON: JSONPackage = JSON.parse(file.buffer.toString());
+    const jsonPackage: any = JSON.parse(file.buffer.toString());
+    console.log(jsonPackage);
+    return jsonPackage;
   }
 }

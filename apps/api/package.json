@@ -72,7 +72,8 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.1.0",
-    "typescript": "^4.8.0"
+    "typescript": "^4.8.0",
+    "type": "*"
   },
   "lint-staged": {
     "{src,test}/**/*.{js,jsx,ts,tsx}": [
