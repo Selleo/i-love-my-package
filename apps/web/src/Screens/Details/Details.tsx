@@ -52,7 +52,7 @@ function Details() {
         <p className="package-card__paragraph -light-gray">Received Cards:</p>
         <Tag count={1} variant="danger" /> <Tag count={3} variant="warning" />
       </div>
-      <Button />
+      <Button label="Add your reaction" />
       <div className="divider" />
       <UsersList variant="like" list={likeList} />
       <UsersList variant="warning" list={warningList} />
