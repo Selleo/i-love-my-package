@@ -1,16 +1,22 @@
 import { User } from "@app/user/user.entity";
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
 @Entity()
-export class JsonPackageEntity {
+export class JsonPackageEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   name: string;
 
-  @Column()
-  version: string;
+  @Column("text", { array: true, default: [] })
+  versions: string[];
 
   @ManyToMany(() => User, (user) => user.jsonPackages, {
     cascade: true,

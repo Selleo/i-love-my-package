@@ -3,6 +3,7 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -16,5 +17,6 @@ export class User extends BaseEntity {
   email: string;
 
   @ManyToMany(() => JsonPackageEntity, (jsonPackage) => jsonPackage.users)
+  @JoinTable()
   jsonPackages: JsonPackageEntity[];
 }
