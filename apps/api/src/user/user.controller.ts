@@ -7,7 +7,7 @@ import { UserService } from "./user.service";
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  create(@Body() newUser: CreateUserDto): Promise<User> {
-    return this.userService.create(newUser);
+  login(@Body() { email }: CreateUserDto): Promise<User> {
+    return this.userService.findOneByEmailOrCreate(email);
   }
 }
