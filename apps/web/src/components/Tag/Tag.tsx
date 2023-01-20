@@ -1,3 +1,5 @@
+import React from "react";
+
 import { ReactComponent as CardIcon } from "../../assets/images/card.svg";
 import { ReactComponent as LikeIcon } from "../../assets/images/heart-filled.svg";
 
@@ -12,8 +14,11 @@ const Tag = ({ count, variant }: Props) => {
       <div className={`tag__mark -${variant}`}>
         {variant === "like" ? <LikeIcon /> : <CardIcon />}
       </div>
-
-      <p className="tag__description">{count}</p>
+      <p
+        className={`tag__description ${variant === "like" ? "" : "-underline"}`}
+      >
+        {count}
+      </p>
     </div>
   );
 };

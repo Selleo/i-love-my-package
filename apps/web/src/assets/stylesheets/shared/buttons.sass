@@ -1,17 +1,17 @@
 .btn
   +transition(background-color, color)
-  border: none
-    radius: $border-radius-sm
+  border: 1px solid $color-neutral-300
   cursor: pointer
-  display: inline-block
+  display: block
   font:
     family: $font-family-body
     size: $font-size-base
     weight: $font-weight-regular
+    color: $color-white
   line-height: $line-height-base
   padding: $m-xs $m-base
   text-decoration: none
-  color: $color-secondary-600
+  border-radius: 4px
 
   // &:hover
   //   +media-touch-devices
@@ -19,6 +19,23 @@
   //     color: inherit !important
 
   //----- color versions -----------------------------------------------------------------------------------------------
+
+  &__container
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    margin: 0 $m-base
+    height: 40px
+
+  &__text
+    color: $color-white
+    margin-bottom: 0
+    margin-left: $m-sm
+
+  &.-with-spacing
+    margin: $m-lg 0
+
   &.-primary
     background-color: $color-primary-500
     color: $color-white
