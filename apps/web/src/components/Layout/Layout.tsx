@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as Logo } from '../../assets/images/new.Selleo-logo.svg';
+import Navbar from '../Navbar';
 
 type TProps = {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ type TProps = {
 const Layout = ({ children }: TProps) => {
   return (
     <div className="layout-background">
-      <nav className="navbar">Navbar</nav>
+      <Navbar />
       <main className="main">{children}</main>
     </div>
   );
