@@ -94,6 +94,6 @@ export class PackageController {
       .innerJoin("pkg.users", "users")
       .where("users.id = :userId", { userId: user.id })
       .andWhere("pkg.id = :packageId", { packageId })
-      .getMany();
+      .getOne();
   }
 }
