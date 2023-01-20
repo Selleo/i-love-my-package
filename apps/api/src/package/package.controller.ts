@@ -3,11 +3,13 @@ import {
   Dependencies,
   JSONPackage,
   MyPackage,
+  UsedBy,
 } from "@app/package/json-package.type";
 import { CurrentUser } from "@app/user/current-user.decorator";
 import { User } from "@app/user/user.entity";
 import { UserGuard } from "@app/user/user.guard";
 import {
+  Body,
   Controller,
   Get,
   Param,
@@ -61,12 +63,18 @@ export class PackageController {
 
       const ver = dependency.version.replace(/[^\d.]/, "");
 
-      if (!pkg.versions?.includes(ver)) pkg.versions.push(ver);
+      if (!pkg.versions?.map((ver) => ver.value)?.includes(ver))
+        pkg.versions.push({
+          userId: currentUser.id,
+          value: ver,
+        });
 
       if (!pkg.users) pkg.users = [];
 
       if (!pkg.users.map((user) => user.id)?.includes(currentUser.id))
         pkg.users.push(currentUser);
+
+      console.log(pkg.users);
 
       pkgsToSave.push(pkg);
     }
@@ -77,23 +85,78 @@ export class PackageController {
       id: pkg.id,
       name: pkg.name,
       versions: pkg.versions,
+      users: pkg.users,
     }));
   }
 
   @Get()
-  packages(@CurrentUser() user: User) {
-    return JsonPackageEntity.createQueryBuilder("pkg")
-      .innerJoin("pkg.users", "users")
-      .where("users.id = :userId", { userId: user.id })
-      .getMany();
+  async packages(@Body() body: { search?: string }, @CurrentUser() user: User) {
+    const packagesQuery = await JsonPackageEntity.createQueryBuilder(
+      "pkg"
+    ).innerJoin("pkg.users", "users");
+
+    if (body.search)
+      packagesQuery.where("LOWER(pkg.name) LIKE :search", {
+        search: `%${body.search}%`,
+      });
+
+    const packages = await packagesQuery.getMany();
+
+    const ids = packages.map((p) => p.id);
+
+    const all = [];
+
+    for (const id of ids) {
+      all.push(await this.getPackage(id));
+    }
+
+    return all;
   }
 
   @Get(":packageId")
-  package(@Param("packageId") packageId: number, @CurrentUser() user: User) {
-    return JsonPackageEntity.createQueryBuilder("pkg")
-      .innerJoin("pkg.users", "users")
-      .where("users.id = :userId", { userId: user.id })
+  async package(@Param("packageId") packageId: number) {
+    return this.getPackage(packageId);
+  }
+
+  async getPackage(packageId: number): Promise<MyPackage> {
+    const package_ = await JsonPackageEntity.createQueryBuilder("pkg")
+      .leftJoinAndSelect("pkg.users", "users")
       .andWhere("pkg.id = :packageId", { packageId })
-      .getOne();
+      .getOneOrFail();
+
+    const usedBy: UsedBy[] = [];
+
+    for (const user of package_.users) {
+      for (const version of package_.versions) {
+        usedBy.push({
+          user: await User.findOneOrFail({ where: { id: version.userId } }),
+          version: version.value,
+        });
+      }
+    }
+
+    const mypkg: MyPackage = {
+      id: package_.id,
+      name: package_.name,
+      usedBy,
+    };
+
+    return mypkg;
   }
 }
+
+// type MyPackage = {
+//   id: number;
+//   name: string;
+//   usedBy: [
+//     {
+//       user: User;
+//       version: string;
+//     }
+//   ];
+//   reactions: {
+//     likes: [{ user: User; comment: string }];
+//     dislikes: [{ user: User; comment: string }];
+//     warnings: [{ user: User; comment: string }];
+//   };
+// };
