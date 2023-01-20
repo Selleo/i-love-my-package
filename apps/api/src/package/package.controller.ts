@@ -50,9 +50,12 @@ export class PackageController {
     const pkgsToSave = [];
 
     for (const dependency of dependencies) {
-      let pkg = await JsonPackageEntity.findOneBy({
-        name: dependency.name,
+      let pkg = await JsonPackageEntity.findOne({
+        where: { name: dependency.name },
+        relations: { users: true },
       });
+
+      console.log(pkg?.users);
 
       if (!pkg)
         pkg = JsonPackageEntity.create({
@@ -63,7 +66,7 @@ export class PackageController {
 
       const ver = dependency.version.replace(/[^\d.]/, "");
 
-      if (!pkg.versions?.map((ver) => ver.value)?.includes(ver))
+      if (!pkg.versions?.map((ver) => ver.userId)?.includes(currentUser.id))
         pkg.versions.push({
           userId: currentUser.id,
           value: ver,
@@ -73,8 +76,6 @@ export class PackageController {
 
       if (!pkg.users.map((user) => user.id)?.includes(currentUser.id))
         pkg.users.push(currentUser);
-
-      console.log(pkg.users);
 
       pkgsToSave.push(pkg);
     }
@@ -127,12 +128,12 @@ export class PackageController {
     const usedBy: UsedBy[] = [];
 
     for (const user of package_.users) {
-      for (const version of package_.versions) {
-        usedBy.push({
-          user: await User.findOneOrFail({ where: { id: version.userId } }),
-          version: version.value,
-        });
-      }
+      const version = package_.versions.find((ver) => ver.userId === user.id);
+      if (!version) continue;
+      usedBy.push({
+        user: await User.findOneOrFail({ where: { id: version.userId } }),
+        version: version?.value,
+      });
     }
 
     const mypkg: MyPackage = {
