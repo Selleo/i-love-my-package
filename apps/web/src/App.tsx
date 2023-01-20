@@ -1,11 +1,11 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import Details from './Screens/Details';
-import Home from './Screens/Home';
-import PackageSearch from './Screens/PackageSearch';
-import Uploaded from './Screens/Uploaded';
-import '../src/assets/stylesheets/application.sass';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import Details from './Screens/Details'
+import Home from './Screens/Home'
+import PackageSearch from './Screens/PackageSearch'
+import Uploaded from './Screens/Uploaded'
+import '../src/assets/stylesheets/application.sass'
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="search" element={<PackageSearch />} />
       </Routes>
     </Layout>
-  );
+  )
 }
 
-export default App;
+export default App
