@@ -5,7 +5,6 @@ import {
   Column,
   Entity,
   JoinColumn,
-  JoinTable,
   ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -18,6 +17,9 @@ export class User extends BaseEntity {
 
   @Column({ nullable: true })
   email: string;
+
+  @Column()
+  externalId: string;
 
   @OneToMany(() => Rating, (rating) => rating.user)
   @JoinColumn()
