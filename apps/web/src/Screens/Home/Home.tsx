@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { ReactComponent as Love } from '../../assets/images/heart-filled.svg';
-import { useDropzone } from 'react-dropzone';
+import React, { useState, useEffect } from "react";
+import { ReactComponent as Love } from "../../assets/images/heart-filled.svg";
+import { useDropzone } from "react-dropzone";
+import { useUploadPackageMutation } from "../../store/packageReducer";
 
 function Home() {
-  const [email, setEmail] = useState('');
   const [files, setFiles] = useState([]);
+
+  const [upload] = useUploadPackageMutation();
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      'application/json': [],
-      'application/x-javascript': [],
-      'text/javascript': [],
-      'text/x-javascript': [],
-      'text/x-json': [],
+      "application/json": [],
+      "application/x-javascript": [],
+      "text/javascript": [],
+      "text/x-javascript": [],
+      "text/x-json": [],
     },
     onDrop: (acceptedFiles: any) => {
       setFiles(
@@ -25,18 +27,11 @@ function Home() {
     },
   });
 
-  const thumbs = files.map((file: any) => (
+  const thumbs = files.map((file: any, index: number) => (
     <div className="thumb" key={file.name}>
       <div className="thumbInner">
-        <img
-          src={file.preview}
-          className="imgHome"
-          alt="alt"
-          // Revoke data uri after image is loaded
-          onLoad={() => {
-            URL.revokeObjectURL(file.preview);
-          }}
-        />
+        {`${index + 1}. `}
+        {file.name}
       </div>
     </div>
   ));
@@ -49,7 +44,7 @@ function Home() {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log('submit');
+    upload(files[0]);
   };
 
   return (
@@ -64,20 +59,9 @@ function Home() {
       </div>
       <form className="home__actions" onSubmit={handleSubmit}>
         <h3>Send us your package</h3>
-        <div className="home__input">
-          <label htmlFor="email">email</label>
-          <input
-            className="navbar__input"
-            id="email"
-            name="email"
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Your email"
-            value={email}
-          />
-        </div>
         <section className="home__container">
           <p className="home__info">import package.json</p>
-          <div {...getRootProps({ className: 'dropzone' })}>
+          <div {...getRootProps({ className: "dropzone" })}>
             <input {...getInputProps()} />
             <p className="home__drag">
               Drag 'n' drop some files here, or click to select files

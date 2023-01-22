@@ -1,6 +1,5 @@
 import { JsonPackageEntity } from "@app/package/json-package.entity";
 import { User } from "@app/user/user.entity";
-import { UserService } from "@app/user/user.service";
 import { Injectable } from "@nestjs/common";
 import { Reaction } from "./rating.dto";
 import { Rating } from "./rating.entity";

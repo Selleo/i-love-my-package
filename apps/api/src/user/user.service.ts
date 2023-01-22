@@ -1,7 +1,6 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { CreateUserDto } from "./user.dto";
+import { Injectable } from "@nestjs/common";
+import { DeepPartial, FindOneOptions } from "typeorm";
+import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
 import { User } from "./user.entity";
 
 @Injectable()
@@ -12,8 +11,8 @@ export class UserService {
     return this.create({ email });
   }
 
-  create(user: CreateUserDto): Promise<User> {
-    const newUser = User.create({ email: user.email });
+  create(entityLike: DeepPartial<User>): Promise<User> {
+    const newUser = User.create(entityLike);
     return newUser.save();
   }
 
@@ -31,5 +30,14 @@ export class UserService {
         id: userId,
       },
     });
+  }
+
+  findOne(options: FindOneOptions<User>){
+    return User.findOne(options)
+  }
+
+  async update(user: User, userData: QueryDeepPartialEntity<User>) {
+    await User.update(user.id, userData);
+    return user.reload();
   }
 }

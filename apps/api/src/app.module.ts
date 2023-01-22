@@ -6,6 +6,7 @@ import { PackageController } from "./package/package.controller";
 import { UserModule } from "./user/user.module";
 import { PackageModule } from "./package/package.module";
 import { RatingModule } from "./rating/rating.module";
+import { AuthModule } from "@app/auth/auth.module";
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { RatingModule } from "./rating/rating.module";
     UserModule,
     PackageModule,
     RatingModule,
+    AuthModule,
   ],
   providers: [
     {

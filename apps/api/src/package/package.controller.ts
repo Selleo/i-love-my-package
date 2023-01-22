@@ -1,3 +1,4 @@
+import { JwtGuard } from "@app/auth/guard/jwt.guard";
 import { JsonPackageEntity } from "@app/package/json-package.entity";
 import {
   Dependencies,
@@ -21,7 +22,7 @@ import {
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 
-@UseGuards(UserGuard)
+@UseGuards(JwtGuard)
 @Controller("package")
 export class PackageController {
   @Post("upload")
